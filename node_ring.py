@@ -16,8 +16,8 @@ class NodeRing():
         b = 12345
         key = key.strip()
         hash = hash_code_hex(key.encode())
-        hh = int(hash, 16)
-        return (a * ((a * port + b) ^ hh) + b) % (2 ^ 31)
+        hex = int(hash, 16)
+        return (a * ((a * port + b) ^ hex) + b) % (2 ^ 31)
 
     def get_node(self, key_hex):
         key = int(key_hex, 16)
