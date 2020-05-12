@@ -4,6 +4,7 @@ import sys
 
 from pickle_hash import hash_code_hex
 from server_config import NODES
+from ConsistentHash import ConsistentHash
 
 
 class NodeRing():
@@ -32,6 +33,17 @@ class NodeRing():
 
         _, node = max(weights)
         return node
+
+    def get_ch_node(self, key):
+        ch = ConsistentHash(len(self.nodes) + 1, 4)
+        print("(Actual_node,Virtual_node,Hash_value):")
+        for (j, k, h) in ch.hash_tuples:
+            print("(%s,%s,%s)" % (j, k, h))
+        print("Hash Value of the sent Key" + str(
+            int((int(hash_code_hex(key.encode()), 16) % 1000000) / 10000.0)))
+        print("Going to node" +
+              str(self.nodes[(ch.get_machine(key)) - 1].port))
+        return self.nodes[(ch.get_machine(key)) - 1]
 
 
 def test():

@@ -32,7 +32,7 @@ def process(udp_clients):
     # PUT all users.
     for u in USERS:
         data_bytes, key = serialize_PUT(u)
-        response = client_ring.get_node(key).send(data_bytes)
+        response = client_ring.get_ch_node(key).send(data_bytes)
         print(response)
         hash_codes.add(str(response.decode()))
 
@@ -44,13 +44,13 @@ def process(udp_clients):
     for hc in hash_codes:
         print(hc)
         data_bytes, key = serialize_GET(hc)
-        response = client_ring.get_node(key).send(data_bytes)
+        response = client_ring.get_ch_node(key).send(data_bytes)
         print(response)
 
     # DELETE all users
     for hc in hash_codes:
         data_bytes, key = serialize_DELETE(hc)
-        server_details = client_ring.get_node(key)
+        server_details = client_ring.get_ch_node(key)
         response = server_details.send(data_bytes)
         print(response)
 
