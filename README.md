@@ -39,6 +39,7 @@ Ring size - 100
 
 Ring Topology - Node 0 -> Node 1 -> Node 2 -> Node 3 -> Node 0
 
+Replication Factor is 2
 
 ![](PORT.png)
 
