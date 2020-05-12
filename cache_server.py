@@ -16,10 +16,6 @@ class MyDict(dict):
         self[key] = value
         return key
 
-    def delete(self, key):
-        self[key] = 0
-        return "success"
-
 
 class UDPServer():
     def __init__(self, host, port):
@@ -43,8 +39,6 @@ class UDPServer():
             return self.db.get(key)
         elif operation == 'PUT':
             return self.db.put(key, value)
-        elif operation == 'DELETE':
-            return self.db.delete(key)
         else:
             print(f'Error: Invalid operation={operation}')
             return 'Not supported operation={}'.format(operation)

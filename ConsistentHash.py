@@ -4,9 +4,10 @@ from pickle_hash import hash_code_hex
 
 
 class ConsistentHash:
-    def __init__(self, num_machines=1, v_nodes=1):
+    def __init__(self, num_machines=1, v_nodes=1, replica_factor=1):
         self.num_machines = num_machines
         self.v_nodes = v_nodes
+        self.replica_factor = replica_factor
 
         hash_tuples = [(j,k,int((int(hash_code_hex((str(j)+"_"+str(k)).encode()), 16) % 1000000) / 10000.0)) \
                        for j in range(self.num_machines) \

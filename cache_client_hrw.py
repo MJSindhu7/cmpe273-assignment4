@@ -47,13 +47,6 @@ def process(udp_clients):
         response = client_ring.get_hrw_node(key).send(data_bytes)
         print(response)
 
-    # DELETE all users
-    for hc in hash_codes:
-        data_bytes, key = serialize_DELETE(hc)
-        server_details = client_ring.get_hrw_node(key)
-        response = server_details.send(data_bytes)
-        print(response)
-
 
 if __name__ == "__main__":
     clients = [UDPClient(server['host'], server['port']) for server in NODES]
