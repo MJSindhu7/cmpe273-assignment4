@@ -6,7 +6,9 @@ The distributed cache you implemented in the midterm is based on naive modula ha
 
 Implement Rendezvous hashing to shard the data.
 
-### RHW Hashing implementation screenshots and explanation
+### Rendezvous hashing implementation screenshots and explanation
+
+File - cache_client_hrw.py
 
 Based on weight of the node, request is routed to highest weighed node as shown below
 
@@ -25,7 +27,9 @@ Features:
 * Add virtual node layer in the consistent hashing.
 * Implement virtual node with data replication. 
 
-### RHW Hashing implementation screenshots and explanation
+### Consistent Hashing implementation screenshots and explanation
+
+File - cache_client_ch.py
 
 PNode --> Physical Node
 
