@@ -32,8 +32,11 @@ def process(udp_clients):
     # PUT all users.
     for u in USERS:
         data_bytes, key = serialize_PUT(u)
-        response = client_ring.get_ch_node(key).send(data_bytes)
-
+        get_ch_node = client_ring.get_ch_node(key)
+        response = get_ch_node.send(data_bytes)
+        replica = replica_map[get_ch_node]
+        print("Replicating in next node")
+        replica.send(data_bytes)
         print(response)
         hash_codes.add(str(response.decode()))
 
@@ -45,10 +48,23 @@ def process(udp_clients):
     for hc in hash_codes:
         print(hc)
         data_bytes, key = serialize_GET(hc)
-        response = client_ring.get_ch_node(key).send(data_bytes)
+        get_ch_node = client_ring.get_ch_node(key)
+        response = get_ch_node.send(data_bytes)
+        replica = replica_map[get_ch_node]
+        print("Response from corresponding node")
         print(response)
+        print("Getting response from replica node")
+        rep_response = replica.send(data_bytes)
+        print(rep_response)
 
 
 if __name__ == "__main__":
     clients = [UDPClient(server['host'], server['port']) for server in NODES]
+    replica_map = {}
+    for i in range(len(clients)):
+        if (i != len(clients) - 1):
+            replica_map[clients[i]] = clients[i + 1]
+        else:
+            replica_map[clients[i]] = clients[0]
+
     process(clients)
