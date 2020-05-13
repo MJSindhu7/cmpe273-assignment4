@@ -31,9 +31,9 @@ Features:
 
 File - cache_client_ch.py
 
-PNode --> Physical Node
+PNode --> Physical Node - 4
 
-VNode --> Virtual Node
+VNode --> Virtual Node - 12
 
 Ring size - 100
 
@@ -41,10 +41,13 @@ Ring Topology - Node 0 -> Node 1 -> Node 2 -> Node 3 -> Node 0
 
 Replication Factor is 2
 
-![](PORT.png)
-
-
-Hash value of the key is 77 which falls after physical Node 3. So this key should be routed to next physical node whcih is Node 0 (Port-4000) 
+Hash value of the key is 77 which falls after physical Node 3. So this key should be routed to next physical node whcih is Node 0 (Port-4000) (For this example took vnode as 4 and replica as 1)
 
 ![](CH.png)
+
+#### Replication factor validation
+
+Retreived data from corresponding node and the replica node. Data is same in both the nodes for the corresponding GET
+
+![](Replica.png)
 
