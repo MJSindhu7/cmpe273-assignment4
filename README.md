@@ -37,7 +37,7 @@ VNode --> Virtual Node - 8
 
 Ring size - 100
 
-Ring Topology - Node 0 -> Node 1 -> Node 2 -> Node 3 -> Node 0
+Ring Topology - Node 0 (Port - 4000) -> Node 1 (Port - 4001) -> Node 2 (Port - 4002) -> Node 3 (Port - 4003) -> Node 0 (Port - 4000)
 
 Replication Factor is 2
 
